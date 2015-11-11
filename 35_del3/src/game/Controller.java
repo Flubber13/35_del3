@@ -18,6 +18,7 @@ public class Controller {
 			player[i] = new Player(30000);
 			player[i].setName(GUI.getUserString(Text.enterName[i]));
 			GUI.addPlayer(player[i].getName(), player[i].getAccount().getBalance());
+			GUI.setCar(1, player[i].getName());
 		}
 		
 		dicecup = new DiceCup();
