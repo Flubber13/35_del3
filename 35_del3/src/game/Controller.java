@@ -6,21 +6,23 @@ public class Controller {
 
 	Player player1, player2;
 	DiceCup dicecup;
+	int numberofplayers;
 
 	public void run() {
-		//The game creates two new players with a start balance of 1000 and a dice cup
-		player1 = new Player(1000);
-		player2 = new Player(1000);
+
+		numberofplayers = GUI.getUserInteger("Hvor mange spillere er I? (2-6 spillere)", 2, 6);
+
+		Player[] player = new Player[6];
+		
+		for (int i = 0; i < numberofplayers; i++) {
+			player[i] = new Player(30000);
+			player[i].setName(GUI.getUserString(Text.enterName[i]));
+			GUI.addPlayer(player[i].getName(), player[i].getAccount().getBalance());
+		}
+		
 		dicecup = new DiceCup();
-		
-		//We then prompt the players for a string and store this string as the player's names
-		player1.setName(GUI.getUserString(Text.enterName1));
-		player2.setName(GUI.getUserString(Text.enterName2));
-		
-		//The players are added to the game with their start balance.
-		GUI.addPlayer(player1.getName(), player1.getAccount().getBalance());
-		GUI.addPlayer(player2.getName(), player2.getAccount().getBalance());
-		
+
+
 		/*The game continues as long as both player's balance is under 3000.  
 		The loop assures both players have an equal amount of turns.*/
 		while(player1.getAccount().getBalance()<3000 && player2.getAccount().getBalance()<3000){
@@ -31,7 +33,7 @@ public class Controller {
 		/* The following lines of code determines the winner of the game
 		If only one player's balance exceeds 3000, in the last round, that player will win.
 		If both player balances exceeds 3000 in the last round, it is a tie. */
-		
+
 		if (player1.getAccount().getBalance() >= 3000 && player2.getAccount().getBalance() < 3000)		//player 1 wins
 			GUI.showMessage(">>> " + player1.getName() + Text.winner + " <<<");
 

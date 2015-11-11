@@ -6,9 +6,10 @@ public class Text {
 	Putting it in one class will make is easier to change the language later.*/
 	
 	//The String in each of the following variables are pulled when referred to in the controller
-	static String enterName1 = "Spiller 1 indtast dit navn";
-	static String enterName2 = "Spiller 2 indtast dit navn";
-
+	
+	static String[] enterName = {"Spiller 1 indtast dit navn", "Spiller 2 indtast dit navn", "Spiller 3 indtast dit navn", 
+			"Spiller 4 indtast dit navn", "Spiller 5 indtast dit navn", "Spiller 6 indtast dit navn"};
+	
 	static String roll = " Tryk OK for at kaste med terningerne";	
 
 	static String landedOn = " landede på:";
