@@ -33,7 +33,8 @@ public class Controller {
 	// Method for the player turn
 	private void playerTurn(Player player) {
 		GUI.showMessage(player.getName() + Text.roll );									//The player is asked to roll the dice
-		int faceValue = dicecup.roll();													//dice is rolled
+		player.setPosition(dicecup.roll());													//dice is rolled
+		GUI.setCar(player.getPosition(), player.getName());
 		GUI.setDice(dicecup.getDie1().getLastRoll(), dicecup.getDie2().getLastRoll());	//dice is shown on screen
 		GUI.showMessage(player.getName() + Text.landedOn);								//Displays which player landed on the field
 		player.getAccount().addBalance(0);												//no points are added at this point in time :D
