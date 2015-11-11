@@ -10,7 +10,7 @@ public class Controller {
 
 	public void run() {
 		// Determines the number of players in the game
-		numOfPlayers = GUI.getUserInteger("Hvor mange spillere er I? (2-6 spillere)", 2, 6);
+		numOfPlayers = GUI.getUserInteger(Text.howManyPlayers, 2, 6);
 		
 		// This loop adds the determined number of players to the game
 		for (int i = 0; i < numOfPlayers; i++) {
@@ -41,7 +41,6 @@ public class Controller {
 		GUI.setBalance(player.getName(), player.getAccount().getBalance());				//displays balance on board 
 
 	}
-
-
+	
 }
 
