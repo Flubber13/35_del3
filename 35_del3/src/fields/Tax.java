@@ -20,7 +20,7 @@ public class Tax extends Field{
 				player.getAccount().addBalance(player.getAccount().getBalance()/10); //If true "-10%" was pressed, we then remove 10% from balance
 			}
 			else 
-				player.getAccount().addBalance(-4000); // -4000 was pressed, removes 4000 from balance
+				player.getAccount().addBalance(-4001); // -4000 was pressed, removes 4000 from balance
 			}
 	}
 }
