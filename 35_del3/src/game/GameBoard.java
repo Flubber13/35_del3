@@ -7,7 +7,7 @@ public class GameBoard {
 	
 	public void makeGameBord(){
 		
-		GUI.setSubText(1, ""); // Start skal ikke umiddelbart have nogen text, og Title er allerede "START"
+		GUI.setSubText(1, null); // Start skal ikke umiddelbart have nogen text, og Title er allerede "START"
 		
 		GUI.setTitleText(2, "");
 		GUI.setSubText(2, "");
