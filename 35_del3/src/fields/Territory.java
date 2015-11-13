@@ -9,7 +9,6 @@ public class Territory extends Ownables {
 	int rent;
 	int i;
 	int j;
-
 	int[] territoryPrice = {0, 2000, 1500, 3000, 1000, 4000, 8000, 4300, 4750, 5000, 5500, 6000};
 	int[] territoryRent = {0, 500, 300, 700, 100, 1000, 4000, 1300, 1600, 2000, 2600, 3200};
 
