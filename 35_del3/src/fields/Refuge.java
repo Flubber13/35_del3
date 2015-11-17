@@ -2,18 +2,24 @@ package fields;
 
 import game.Player;
 
-public class Refuge extends Field {
+public class Refuge extends AbstractField {
 
 	int bonus;
-	
-	
-	@Override
-	public void landedOn(Player player) {
-				
+	int place;
+
+	public Refuge(int place,int bonus){
+		this.place=place;
+		this.bonus=bonus;
 	}
 
-	
-	
-//	12.Walled city Refuge Receive 5000  
-//	13.Monastery Refuge Receive 500  	
+	@Override
+	public void landedOn(Player player) {
+		if(player.getPosition()==place){
+			player.getAccount().addBalance(bonus);	
+		}
+	}
+
+	//	7.	Monastery - Refuge
+	//	17.	Walled City – refuge
+
 }
