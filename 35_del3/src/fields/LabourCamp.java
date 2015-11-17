@@ -1,29 +1,43 @@
 package fields;
 
+import desktop_resources.GUI;
 import game.Player;
 
-public class LabourCamp extends Ownables {
+public class LaborCamp extends AbstractOwnables {
 
-	
-	int baseRent;
-	
+	int baseRent = 100;
+	int price = 2500;
+	int place;
+
 	@Override
 	public int getRent() {
-		// TODO Auto-generated method stub
-		return 0;
+		return baseRent;
+	}
+
+	public LaborCamp(int place){
+		this.place=place;
 	}
 
 	@Override
 	public void landedOn(Player player) {
-		// TODO Auto-generated method stub
-		
+		if(player.getPosition()==place){
+			if(owner == null){
+				boolean selection = GUI.getUserLeftButtonPressed("Vil du købe denne grund? Pris: $"+price, "Ja", "Nej");
+				if(selection == true){
+					this.owner = player;
+					GUI.setOwner(place, player.getName());
+					player.getAccount().addBalance(-price);
+				}
+			}
+			else{
+				player.getAccount().addBalance(- player.getLastRoll()*baseRent);
+				owner.getAccount().addBalance(player.getLastRoll()*baseRent);
+			} 
+		}
 	}
 
-
 	
+	// 11. Huts in the Mountain – Labor Camp
+	// 19. The Pit – Labor camp
 	
-	
-	
-	//	14.Huts in the mountain Labor camp Pay 100 x dice Price 2500  
-//	15.The pit Labor camp Pay 100 x dice Price 2500  
-}
+}	
