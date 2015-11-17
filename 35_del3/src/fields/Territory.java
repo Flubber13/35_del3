@@ -3,14 +3,17 @@ package fields;
 import desktop_resources.GUI;
 import game.Player;
 
-public class Territory extends Ownables {
+public class Territory extends AbstractOwnables {
 
 
 	int rent;
-	int i;
-	int j;
-	int[] territoryPrice = {0, 2000, 1500, 3000, 1000, 4000, 8000, 4300, 4750, 5000, 5500, 6000};
-	int[] territoryRent = {0, 500, 300, 700, 100, 1000, 4000, 1300, 1600, 2000, 2600, 3200};
+	int place;
+
+	public Territory(int place, int rent, int price){
+		this.place=place;
+		this.rent=rent;
+		this.price=price;
+	}
 
 	@Override
 	public int getRent() {
@@ -19,37 +22,35 @@ public class Territory extends Ownables {
 
 	@Override
 	public void landedOn(Player player) {
-		this.i = player.getPosition();
-
-		// j er spillerens position i ovenstående index. Hvis eksempelvis spilleren befinder sig på 
-		// felt nr. 4, så vil det svare til index 2 (både i Price og Rent). 
-		this.j = i/2;
-
-		if ((i == 2) || (i == 4) || (i == 6) || (i == 8) ||
-				(i == 10) || (i == 12) || (i == 14) || (i == 16) ||
-				(i == 18) ||(i == 20) || (i == 22)){
-
-			// Hvis det pågældende felt er ejet (mangler at udføre klassen).
-			if(i == 0){
-				player.getAccount().addBalance(- territoryRent[j]);
+		if(player.getPosition()==place){	
+			if(owner == null){
+				boolean s = GUI.getUserLeftButtonPressed("Vil du købe denne grund? Pris: $"+price, "Ja", "Nej");
+				if(s == true){
+					setOwner(player);
+					GUI.setOwner(place, player.getName());
+					player.getAccount().addBalance(-price);
+				}
 			}
-			// Ellers bliver spilleren spurgt, om vedkommende vil købe feltet.
 			else{
-				boolean Buttonpressed = GUI.getUserLeftButtonPressed("Feltet er ikke ejet. Vil du købe det for: "
-						+ territoryPrice[j] + " ?", "Ja", "Nej");{
-							
-							// Hvis spilleren siger ja, købes feltet.
-							if (Buttonpressed == true){
-								player.getAccount().addBalance(- territoryPrice[j]);
-								
-								// Tilføjer derefter feltet til spilleren.
-							}
-						}
-
+				player.getAccount().addBalance(-rent);
+				owner.getAccount().addBalance(rent);
 			}
-
 		}
-
 	}
+
+	/*
+	2.	Tribe Encampment - Territory
+	4.	Crater - Territory
+	6.	Mountain – Territory
+	8.	Cold Dessert – Territory
+	10.	Black Cave – Territory
+	12.	The Warewall - Territory
+	14.	Mountain Village – Territory 
+	16.	South Citadel - Territory
+	18.	Palace Gates – Territory
+	20.	Tower – Territory
+	22.	Castle - Territory
+	 */
+
 
 }
